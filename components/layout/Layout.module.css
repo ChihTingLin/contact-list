@@ -1,0 +1,19 @@
+.header {
+  padding: 0 7.5%;
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(241, 241, 241);
+}
+
+.container {
+  width: 85%;
+  margin: auto;
+  padding: 1rem 0;
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    width: 100%;
+    padding: 1rem 7.5%;
+  }
+}

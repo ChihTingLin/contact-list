@@ -1,3 +1,13 @@
+:root {
+  --blue: #007bff;
+  --darkBlue: #026ee2;
+  --grey: #6c757d;
+  --darkGrey: #52595f;
+  --red: #dc3545;
+  --darkRed: #bb2d3b;
+  --green: #28a745;
+}
+
 html,
 body {
   padding: 0;

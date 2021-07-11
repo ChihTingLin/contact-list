@@ -1,0 +1,6 @@
+Code 1 is better
+Code 1 is using the event delegation event handling pattern.
+Bind event listener on an ancestor element and the listener can capture events that are bubbled from its children elements.
+The benefits are:
+1. No need to setup many event listeners and therefore saves memory 
+2. Less DOM modifications when UI is updating.

@@ -1,0 +1,26 @@
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 48%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid var(--darkGrey);
+  margin-bottom: 1rem;
+}
+
+.name {
+  vertical-align: super;
+  font-size: 1.2rem;
+}
+
+.actions {
+  display: inline-block;
+  width: 45%;
+  text-align: right;
+}
+
+@media screen and (max-width: 600px) {
+  .wrapper {
+    width: 100%;
+  }
+}
