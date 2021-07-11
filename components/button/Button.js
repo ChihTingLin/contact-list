@@ -7,12 +7,20 @@ export default function Button({
   onClick = () => {},
   to,
   style = "blue",
+  disabled = false,
   ...rest
 }) {
+  const className = `${styles.wrapper} ${styles[style]} ${
+    disabled ? styles.disabled : ""
+  }`;
   if (to) {
-    return (
+    return disabled ? (
+      <span className={className} {...rest}>
+        {children}
+      </span>
+    ) : (
       <Link href={to} passHref>
-        <a className={`${styles.wrapper} ${styles[style]}`} {...rest}>
+        <a className={className} {...rest}>
           {children}
         </a>
       </Link>
@@ -21,7 +29,8 @@ export default function Button({
   return (
     <button
       type={type}
-      className={`${styles.wrapper} ${styles[style]}`}
+      className={className}
+      disabled={disabled}
       onClick={onClick}
       {...rest}
     >

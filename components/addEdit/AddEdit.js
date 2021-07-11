@@ -1,5 +1,6 @@
 import { useFormik } from "formik";
 import * as yup from "yup";
+import Image from "next/image";
 import Button from "../button/Button";
 import styles from "./AddEdit.module.css";
 
@@ -17,17 +18,22 @@ const getInitValues = (values) => ({
   description: values.description || "",
 });
 
-export default function AddEdit({ initValues={}, submit = () => {} }) {
-  const isEdit = initValues && initValues.id;
-  const { handleSubmit, handleChange, resetForm, values, errors, touched } =
-    useFormik({
-      onSubmit: (values) => {
-        console.log(values);
-        submit(values);
-      },
-      initialValues: getInitValues(initValues),
-      validationSchema,
-    });
+export default function AddEdit({ initValues = {}, submit = () => {} }) {
+  const {
+    handleSubmit,
+    handleChange,
+    resetForm,
+    values,
+    errors,
+    touched,
+    isSubmitting,
+  } = useFormik({
+    onSubmit: (values) => {
+      submit(values);
+    },
+    initialValues: getInitValues(initValues),
+    validationSchema,
+  });
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
       <div className={styles.field}>
@@ -41,6 +47,7 @@ export default function AddEdit({ initValues={}, submit = () => {} }) {
           className={styles.input}
           value={values.first_name}
           onChange={handleChange}
+          disabled={isSubmitting}
         />
         {touched.first_name && errors.first_name && (
           <div className={styles.error}>{errors.first_name}</div>
@@ -48,7 +55,7 @@ export default function AddEdit({ initValues={}, submit = () => {} }) {
       </div>
       <div className={styles.field}>
         <label className={styles.label} htmlFor="last_name">
-          last Name
+          Last Name
         </label>
         <input
           type="text"
@@ -57,6 +64,7 @@ export default function AddEdit({ initValues={}, submit = () => {} }) {
           className={styles.input}
           value={values.last_name}
           onChange={handleChange}
+          disabled={isSubmitting}
         />
         {touched.last_name && errors.last_name && (
           <div className={styles.error}>{errors.last_name}</div>
@@ -73,6 +81,7 @@ export default function AddEdit({ initValues={}, submit = () => {} }) {
           className={styles.input}
           value={values.job}
           onChange={handleChange}
+          disabled={isSubmitting}
         />
       </div>
       <div className={styles.field}>
@@ -86,14 +95,17 @@ export default function AddEdit({ initValues={}, submit = () => {} }) {
           className={styles.input}
           value={values.description}
           onChange={handleChange}
+          disabled={isSubmitting}
         />
       </div>
       <div className={styles.field}>
-        <Button type="submit">Save</Button>
-        <Button style="grey" onClick={resetForm}>
+        <Button type="submit" disabled={isSubmitting}>
+          Save
+        </Button>
+        <Button style="grey" onClick={resetForm} disabled={isSubmitting}>
           Reset
         </Button>
-        <Button style="red-outline" to="/">
+        <Button style="red-outline" to="/" disabled={isSubmitting}>
           Cancel
         </Button>
       </div>
